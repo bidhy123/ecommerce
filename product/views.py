@@ -1,8 +1,9 @@
-
 from django.shortcuts import render
-from .models import Product
+from home.models import Product
 
 
 def product(request):
     product1 = Product.objects.all()
-    return render(request, "index.html", {'product1': product1})
+    for x in product1:
+        if x.awesome is True:
+            return render(request, "product.html", {'product1': x})
